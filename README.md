@@ -1,2 +1,1 @@
-# test-pages
-test-pages
+# payment-page-card-standard

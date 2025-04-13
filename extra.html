@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="favicon/favicon-192x192.png">
+  <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+  <link rel="shortcut icon" href="favicon/favicon.ico"> 
+
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+
+  <meta name="msapplication-TileImage" content="favicon/favicon-192x192.png">
+  <meta name="msapplication-TileColor" content="#354BCA">
+
+  <title>Оплата онлайн</title>
+  <script src="js/script.js" type="text/javascript"></script>
+</head>
+
+<body>
+  <div class="content" >
+    <header>
+      <div class="container">
+        <div class="logo-wrapper">
+          <img src="img/logo.svg" alt="Кубань кредит" class="logo">
+        </div>
+        <div class="back-button-desktop">
+          <img src="img/arrow.svg" alt="Стрелка" class="arrow-left">
+          <a class="back-button" href="${errorref}">Вернуться назад</a>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="cards">
+          <div class="card card-front">
+            <img src="img/logo.svg" alt="Кубань кредит" class="kk-logo">
+            <form 
+              id="cardencrypt-form" 
+              name="cardencrypt-form" 
+              class="cardencrypt-form" 
+              method="post" 
+              action="${action}" 
+              enctype="application/x-www-form-urlencoded">
+                <div class="pan-block">
+                  <div class="wrapper-input">
+                    <input 
+                      name="pan" 
+                      id="pan" 
+                      type="tel" 
+                      onkeyup="checkMaxLength(this, event)" 
+                      onkeydown="pressEnter(event, this)" 
+                      oninput="panMask(event, this)" 
+                      placeholder="0000 0000 0000 0000" 
+                      autofocus="autofocus" 
+                      autocomplete="off"
+                      class="group-input pan"
+                      value=""
+                      pattern_x="${pan.pattern}"
+                      maxlength="22"/>
+                  </div>
+                  <span class="group-error pan-error"></span>
+                </div>
+                <div class="expDate-cvv-block">
+                  <div class="expDate-block">
+                    <div class="inline" id="inline">
+                      <input 
+                        name="expMonth" 
+                        id="expMonth" 
+                        type="tel"
+                        onkeyup="checkMaxLength(this, event)" 
+                        onkeydown="pressEnter(event, this)" 
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                        autocomplete="off" 
+                        class="group-input expMonth"
+                        value=""
+                        pattern_x="${expMonth.pattern}"
+                        placeholder="00" 
+                        maxlength="2"/>
+                      <span>/</span>
+                      <input 
+                        name="expYear" 
+                        id="expYear" 
+                        type="tel" 
+                        onkeyup="checkMaxLength(this, event)" 
+                        onkeydown="pressEnter(event, this)" 
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                        autocomplete="off" 
+                        class="group-input expYear"
+                        value=""
+                        pattern_x="${expYear.pattern}"
+                        placeholder="00"
+                        maxlength="2"/>
+                    </div>
+                    <span class="group-error exp-date-error"></span>
+                  </div>
+                  <div class="cvv2-block">
+                    <div class="wrapper-input">
+                      <input 
+                        name="cvv2" 
+                        id="cvv2"
+                        type="password" 
+                        onkeyup="checkMaxLength(this, event)" 
+                        onkeydown="pressEnter(event, this)" 
+                        oninput="this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');" 
+                        placeholder="CVC / CVV" 
+                        inputmode="numeric" 
+                        class="group-input cvv2"
+                        value=""
+                        pattern_x="${cvv2.pattern}"
+                        maxlength="3"/>
+                    </div>
+                    <span class="group-error cvv-error"></span>
+                  </div>
+                </div>
+                <input 
+                  type="hidden"
+                  name="errorref" 
+                  id="errorref"
+                  value="${errorref}"/>
+            </form>
+            <img src="img/mir-bank-card.svg" alt="Мир" class="mir-logo">
+          </div>
+          <div class="card card-back">
+            <div class="black-line"></div>
+            <div class="lines">
+              <div class="line gray-line"></div>
+              <div class="line gray-line"></div>
+              <div class="line gray-line"></div>
+              <div class="line gray-line"></div>
+              <div class="line gray-line"></div>
+              <div class="line gray-line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="cards-footer">
+          <p class="description">
+            К оплате принимаются карты с двухфакторной аутентификацией. Карта должна поддерживать технологию 3D-Secure: после ввода данных карты Вам нужно дополнительно ввести код из СМС
+          </p>
+          <input onkeydown="pressEnter(event, this)" type="submit" value="Оплатить" form="cardencrypt-form" class="pay-button">
+          <a class="pay-button gray" href="${errorref}">Вернуться назад</a>
+        </div>
+      </div>
+      <footer id="payment-systems" class="payment-systems desktop">
+        <img src="img/mastercard.svg" alt="Мастеркард"> 
+        <img src="img/mir.svg" alt="Мир">     
+        <img src="img/visa.svg" alt="Виза">               
+      </footer>
+    </main>
+    <footer id="payment-systems" class="payment-systems mobile">
+        <img src="img/mastercard-sm.svg" alt="Мастеркард"> 
+        <img src="img/mir-sm.svg" alt="Мир">     
+        <img src="img/visa-sm.svg" alt="Виза">               
+    </footer>
+  </div>
+</body>
+</html>
